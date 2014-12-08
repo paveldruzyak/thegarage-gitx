@@ -17,11 +17,11 @@ module Thegarage
           branch = feature_branch_name
           print_message(branch, integration_branch)
 
-          begin
-            execute_command(UpdateCommand, :update)
-          rescue
-            fail MergeError, "Merge Conflict Occurred. Please Merge Conflict Occurred. Please fix merge conflict and rerun the integrate command"
-          end
+          # begin
+          #   execute_command(UpdateCommand, :update)
+          # rescue
+          #   fail MergeError, "Merge Conflict Occurred. Please Merge Conflict Occurred. Please fix merge conflict and rerun the integrate command"
+          # end
 
           integrate_branch(branch, integration_branch) unless options[:resume]
           checkout_branch branch
