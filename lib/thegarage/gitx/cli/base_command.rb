@@ -1,6 +1,7 @@
 require 'thor'
 require 'pathname'
 require 'rugged'
+require 'yaml'
 require 'thegarage/gitx'
 
 module Thegarage
