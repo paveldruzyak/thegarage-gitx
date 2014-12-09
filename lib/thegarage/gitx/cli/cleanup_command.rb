@@ -12,11 +12,11 @@ module Thegarage
           run_cmd "git pull"
           run_cmd 'git remote prune origin'
 
-          say "Deleting local and remote branches that have been merged into "
+          say "Deleting local branches that have been merged into "
           say Thegarage::Gitx::BASE_BRANCH, :green
-          merged_branches(remote: true).each do |branch|
-            run_cmd "git push origin --delete #{branch}"
-          end
+          # merged_branches(remote: true).each do |branch|
+          #   run_cmd "git push origin --delete #{branch}"
+          # end
           merged_branches(remote: false).each do |branch|
             run_cmd "git branch -d #{branch}"
           end
