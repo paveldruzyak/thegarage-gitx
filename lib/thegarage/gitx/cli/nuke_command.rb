@@ -29,6 +29,7 @@ module Thegarage
           run_cmd "git push origin #{bad_branch}"
           run_cmd "git branch --set-upstream-to origin/#{bad_branch}"
           checkout_branch Thegarage::Gitx::BASE_BRANCH
+          remove_label_from_issues(bad_branch)
         end
 
         private
@@ -57,6 +58,12 @@ module Thegarage
           run_cmd "git fetch --tags"
           build_tags = run_cmd("git tag -l 'build-#{branch}-*'").split
           build_tags.sort
+        end
+
+        def remove_label_from_issues(label)
+          github_client.list_issues(github_slug, labels: label).each do |issue|
+            github_client.remove_label(github_slug, issue.number, label)
+          end
         end
       end
     end
