@@ -6,6 +6,7 @@ module Thegarage
   module Gitx
     module Cli
       class NukeCommand < BaseCommand
+        include Github
         desc 'nuke', 'nuke the specified aggregate branch and reset it to a known good state'
         method_option :destination, :type => :string, :aliases => '-d', :desc => 'destination branch to reset to'
         def nuke(bad_branch)
