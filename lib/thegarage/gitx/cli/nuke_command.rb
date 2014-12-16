@@ -1,6 +1,7 @@
 require 'thor'
 require 'thegarage/gitx'
 require 'thegarage/gitx/cli/base_command'
+require 'thegarage/gitx/github'
 
 module Thegarage
   module Gitx
