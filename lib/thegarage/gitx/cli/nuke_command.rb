@@ -47,7 +47,15 @@ module Thegarage
             version = File.basename(migration).split('_').first
             say "rake db:migrate:down VERSION=#{version}"
           end
-          !yes?("Are you sure you want to nuke #{bad_branch}? (y/n) ", :green)
+          if config[:heroku] == true && yes?("Do you want revert outdated migrations on heroku server (#{bad_branch})? (y/n) ", :green)
+            outdated_migrations.reverse.each do |migration|
+              version = File.basename(migration).split('_').first
+              run_cmd "heroku run rake db:migrate:down VERSION=#{version} -a #{bad_branch}"
+            end
+            false
+          else
+            !yes?("Are you sure you want to nuke #{bad_branch}? (y/n) ", :green)
+          end
         end
 
         def current_build_tag(branch)
