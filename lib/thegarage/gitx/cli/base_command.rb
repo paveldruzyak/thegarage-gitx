@@ -15,7 +15,8 @@ module Thegarage
         DEFAULT_CONFIG = {
           aggregate_branches: %w( staging prototype ),
           reserved_branches: %w( HEAD master next_release staging prototype ),
-          taggable_branches: %w( master staging )
+          taggable_branches: %w( master staging ),
+          default_branch: master
         }
         add_runtime_options!
 

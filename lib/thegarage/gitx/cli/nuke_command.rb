@@ -11,8 +11,8 @@ module Thegarage
         desc 'nuke', 'nuke the specified aggregate branch and reset it to a known good state'
         method_option :destination, :type => :string, :aliases => '-d', :desc => 'destination branch to reset to'
         def nuke(bad_branch)
-          good_branch = options[:destination] || ask("What branch do you want to reset #{bad_branch} to? (default: #{bad_branch})")
-          good_branch = bad_branch if good_branch.length == 0
+          good_branch = options[:destination] || ask("What branch do you want to reset #{bad_branch} to? (default: #{config[:default_branch]}})")
+          good_branch = config[:default_branch] if good_branch.length == 0
 
           last_known_good_tag = current_build_tag(good_branch)
           return unless yes?("Reset #{bad_branch} to #{last_known_good_tag}? (y/n)", :green)
